@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ins_push.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/06 21:06:15 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/09/13 21:09:08 by jgavilan         ###   ########.fr       */
+/*   Created: 2023/09/13 20:06:54 by jgavilan          #+#    #+#             */
+/*   Updated: 2023/09/13 20:27:32 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int i, char **argv)
-{
-	t_game	game;
 
-	fill_stack_a(i, argv);
-	
-}
+
+void ft_pa()
+
+void ft_ra()
+
+void ft_rra()
+
+void ft_ss()
