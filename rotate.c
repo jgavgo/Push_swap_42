@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/06 21:06:15 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/09/22 22:05:42 by jgavilan         ###   ########.fr       */
+/*   Created: 2023/09/13 20:06:59 by jgavilan          #+#    #+#             */
+/*   Updated: 2023/09/22 21:15:18 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_validate_str(i, argv)
+void	ft_ra()
 {
 	
 }
 
-int	main(int argc, char **argv)
+void	ft_rb()
 {
-	t_game	game;
+	
+}
 
-	ft_validate_str(i, argv);
+void	ft_rr()
+{
 	
 }
