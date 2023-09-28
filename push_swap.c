@@ -6,13 +6,13 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 21:06:15 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/09/26 22:49:43 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/09/28 23:33:27 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ini_stacks(int argc, t_struct *argm)
+int	ini_stacks(int argc, t_stacks *argm)
 {
 	argm->len = argc - 1;
 	argm->lena = argc -1;
@@ -43,13 +43,25 @@ int	ini_stacks(int argc, t_struct *argm)
 
 int	main(int argc, char **argv)
 {
-	t_struct	*argm;
+	t_stacks	*argm;
+	int			i;
 
+	i = 0;
 	if (argc == 1)
 		return (0);
-	argm = (t_struct *)malloc(sizeof(t_struct));
+	argm = (t_stacks *)malloc(sizeof(t_stacks));
 	if (!argm)
 		return (0);
 	if (!ini_stacks(argc, argm))
-		ft_error();
+		ft_error('1');
+	if (!valid_args(argm->stackaux, argv, argc))
+		ft_error('2');
+	while (i < (argc - 1))
+	{
+		printf("%i \n", argm->stackaux[i]);
+		printf("random es %d\n", argm->test.random);
+		i++;
+	}
+	ft_free(argm);
+	return (0);
 }
