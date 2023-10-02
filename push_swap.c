@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 21:06:15 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/09/28 23:33:27 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/10/02 20:29:04 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,18 @@ int	main(int argc, char **argv)
 	if (!argm)
 		return (0);
 	if (!ini_stacks(argc, argm))
-		ft_error('1');
-	if (!valid_args(argm->stackaux, argv, argc))
-		ft_error('2');
-	while (i < (argc - 1))
+		ft_error();
+	if (!valid_args(argm, argv, argc))
 	{
-		printf("%i \n", argm->stackaux[i]);
-		printf("random es %d\n", argm->test.random);
-		i++;
+		ft_free (argm);
+		ft_error();
 	}
+	if (repeat_num(argm, argv, argc))
+	{
+		ft_free (argm);
+		ft_error ();
+	}
+	
 	ft_free(argm);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 20:37:13 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/09/28 23:32:12 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/10/02 20:27:05 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	ft_free(t_stacks *argm)
 	free(argm->stacka);
 	free(argm->stackb);
 	free(argm->stackaux);
+	free(argm);
 	return ;
 }
 
 
-void	ft_error(int i)
+void	ft_error(void)
 {
-	write (1, &i, 2);
 	write (2, "Error\n", 6);
 	exit (0);
 }
@@ -53,7 +53,7 @@ int	ft_atoi(const char *str)
 	return (num * sign);
 }
 
-int	valid_args(int *stackaux, char **argv, int argc)
+int	valid_args(t_stacks *argm, char **argv, int argc)
 {
 	int	i;
 
@@ -61,15 +61,9 @@ int	valid_args(int *stackaux, char **argv, int argc)
 	while (i < argc)
 	{
 		if (argv[i])
-		{
-			//printf("%s\n", argv[i]);
-			stackaux[i - 1] = ft_atoi(argv[i]);
-		}
+			argm->stackaux[i - 1] = ft_atoi(argv[i]);
 		else
-		{
-			//ft_free(argm);
-			ft_error('3');
-		}
+			ft_error();
 		i++;
 	}
 	return (1);
