@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 20:37:13 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/10/02 20:27:05 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/10/03 22:01:07 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,41 @@ int	ft_atoi(const char *str)
 	return (num * sign);
 }
 
-int	valid_args(t_stacks *argm, char **argv, int argc)
+int	valid_args(char **argv, int argc)
 {
 	int	i;
 
 	i = 1;
 	while (i < argc)
 	{
-		if (argv[i])
-			argm->stackaux[i - 1] = ft_atoi(argv[i]);
+		if (!ft_atoi(argv[i]))
+			return (0);
 		else
-			ft_error();
+			i++;
+	}
+	return (1);
+}
+
+int	repeat_num(char **argv, int argc)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i <= argc)
+	{
+		j = i + 1;
+		while (j <= argc)
+		{
+			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
+				return (0);
+			else
+				j++;
+		}
 		i++;
 	}
 	return (1);
 }
+
+
 
