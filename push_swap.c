@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 21:06:15 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/10/04 00:13:17 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/10/04 22:53:38 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,20 @@ void	index_stacka(t_stacks *argm)
 	iter = 0;
 	index = 0;
 	argm->lena = argm->len;
-	while (i++ < argm->lena)
+	while (i < argm->lena)
 	{
-		while (iter++ <= argm->len)
+		while (iter < argm->len)
 		{
 			if (argm->stackaux[i] > argm->stackaux[iter])
 				index++;
+			iter++;
 		}
 		argm->stacka[i] = index;
 		index = 0;
 		iter = 0;
+		i++;
 	}
+	return ;
 }
 
 void	fill_stacks(t_stacks *argm, int argc, char **argv)
@@ -41,12 +44,16 @@ void	fill_stacks(t_stacks *argm, int argc, char **argv)
 
 	i = 1;
 	argm->len = argc - 1;
-	while (i++ <= argc)
+	while (i < argc)
+	{
 		argm->stackaux[i - 1] = ft_atoi(argv[i]);
+		i++;
+	}
 	index_stacka(argm);
 	argm->lena = argm->len;
 	argm->lenb = 0;
 	sel_solution(argm);
+	return ;
 }
 
 void	sel_solution(t_stacks *argm)
@@ -59,6 +66,7 @@ void	sel_solution(t_stacks *argm)
 		order4(argm);
 	if (argm->len == 5)
 		order5(argm);
+	return ;
 }
 
 int	ini_stacks(int argc, t_stacks *argm)
@@ -107,7 +115,7 @@ int	main(int argc, char **argv)
 		return (0);
 	if (!ini_stacks(argc, argm))
 		ft_error();
-	sel_solution(argm);
+	fill_stacks(argm, argc, argv);
 	ft_free(argm);
 	return (0);
 }

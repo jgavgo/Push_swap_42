@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 20:06:54 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/10/03 23:21:31 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/10/04 19:56:39 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_sa(t_stacks *argm)
 	argm->stacka[0] = argm->stacka[1];
 	argm->stacka[1] = aux;
 	write(1, "sa\n", 3);
+	return ;
 }
 
 void	ft_sb(t_stacks *argm)
@@ -30,6 +31,7 @@ void	ft_sb(t_stacks *argm)
 	argm->stackb[0] = argm->stackb[1];
 	argm->stackb[1] = aux;
 	write(1, "sb\n", 3);
+	return ;
 }
 
 void	ft_ss(t_stacks *argm)
@@ -37,6 +39,7 @@ void	ft_ss(t_stacks *argm)
 	ft_sa(argm);
 	ft_sb(argm);
 	write(1, "ss\n", 3);
+	return ;
 }
 
 void	ft_pa(t_stacks *argm)
@@ -54,6 +57,7 @@ void	ft_pa(t_stacks *argm)
 	write (1, "pa\n", 3);
 	argm->lena++;
 	argm->lenb--;
+	return ;
 }
 
 void	ft_pb(t_stacks *argm)
@@ -71,4 +75,5 @@ void	ft_pb(t_stacks *argm)
 	write (1, "pb\n", 3);
 	argm->lena--;
 	argm->lenb++;
+	return ;
 }

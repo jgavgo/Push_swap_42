@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 20:37:13 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/10/03 22:01:07 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/10/04 21:27:43 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ int	repeat_num(char **argv, int argc)
 	int	j;
 
 	i = 1;
-	while (i <= argc)
+	while (i < argc)
 	{
 		j = i + 1;
-		while (j <= argc)
+		while (j < argc)
 		{
 			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
 				return (0);
