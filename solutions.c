@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 20:27:08 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/10/04 22:54:13 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/10/06 23:44:51 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,42 +19,78 @@ void	order2(t_stacks *argm)
 	return ;
 }
 
-void	order3(t_stacks *argm)
+void	order3(t_stacks *a)
 {
-	int	i;
-
-	i = 1;
-	printf("primer numero %i \n", argm->stacka[0]);
-	printf("segundo numero %i \n", argm->stacka[1]);
-	printf("tercer numero %i\n", argm->stacka[2]);
-	while (argm->stacka[i] != 2)
-		i++;
-	if (i == 1)
-		ft_rra(argm);
-	if (i == 0)
-		ft_ra(argm);
-	if (argm->stacka[0] > argm->stacka[1])
-		ft_sa(argm);
-	printf("primer numero %i \n", argm->stacka[0]);
-	printf("segundo numero %i \n", argm->stacka[1]);
-	printf("tercer numero %i\n", argm->stacka[2]);
-	return ;
+	if (a->stacka[0] > a->stacka[1] && a->stacka[0] < a->stacka[2])
+		ft_sa(a);
+	else if (a->stacka[0] > a->stacka[1] && a->stacka[1] > a->stacka[2])
+	{
+		ft_sa(a);
+		ft_rra(a);
+	}
+	else if (a->stacka[0] > a->stacka[1] && a->stacka[0] > a->stacka[2])
+		ft_ra(a);
+	else if (a->stacka[0] < a->stacka[1] && a->stacka[0] > a->stacka[2])
+		ft_rra(a);
+	else if (a->stacka[0] < a->stacka[1] && a->stacka[1] > a->stacka[2])
+	{
+		ft_rra(a);
+		ft_sa(a);
+	}
 }
 
 void	order4(t_stacks *argm)
 {
-	if (argm->stacka[0] > argm->stacka[1])
-		ft_sa(argm);
-	if (argm->stacka[0] > argm->stacka[2])
+	int	i;
+	int	j;
+
+	j = 0;
+	i = 0;
+	while (i < argm->lena)
+	{
+		if (argm->stacka[j] < argm->stacka[i])
+			j = i;
+		else
+			i++;
+	}
+	if (i <= 1 && argm->stacka[0] != j)
 		ft_ra(argm);
+	else if (i > 1 && argm->stacka[0] != j)
+	{
+		while (argm->stacka[0] != j)
+		{
+			ft_rra(argm);
+		}
+	}
+	ft_pb(argm);
+	order3(argm);
+	ft_pa(argm);
 	return ;
 }
 
 void	order5(t_stacks *argm)
 {
-	if (argm->stacka[0] > argm->stacka[1])
-		ft_sa(argm);
-	if (argm->stacka[0] > argm->stacka[2])
-		ft_ra(argm);
+	int	i;
+
+	i = 0;
+	while (argm->stacka[i] != 0)
+		i++;
+	if (i <= 2 && argm->stacka[0] != 0)
+	{
+		while (argm->stacka[0] != 0)
+		{
+			ft_ra(argm);
+		}
+	}
+	else if (i > 2 && argm->stacka[0] != 0)
+	{
+		while (argm->stacka[0] != 0)
+		{
+			ft_rra(argm);
+		}
+	}
+	ft_pb(argm);
+	order4(argm);
+	ft_pa(argm);
 	return ;
 }

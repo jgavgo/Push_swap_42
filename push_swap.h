@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 21:06:18 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/10/04 00:09:32 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/10/07 00:05:59 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void	order3(t_stacks *argm);
 void	order4(t_stacks *argm);
 void	order5(t_stacks *argm);
 int		repeat_num(char **argv, int argc);
+void	ordermax(t_stacks *argm);
 
 #endif

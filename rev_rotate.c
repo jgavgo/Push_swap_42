@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 21:10:00 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/10/04 22:58:53 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/10/06 22:51:46 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ void	ft_rra(t_stacks *argm)
 	int	aux;
 	int	lena;
 
-	lena = argm->lena;
-	printf("lena es = a %i\n", lena);
-	aux = argm->stacka[lena - 1];
+	lena = argm->lena - 1;
+	aux = argm->stacka[lena];
 	while (lena > 0)
 	{
 		argm->stacka[lena] = argm->stacka[lena - 1];
@@ -35,8 +34,8 @@ void	ft_rrb(t_stacks *argm)
 	int	aux;
 	int	lenb;
 
-	lenb = argm->lenb;
-	aux = argm->stackb[lenb - 1];
+	lenb = argm->lenb - 1;
+	aux = argm->stackb[lenb];
 	while (lenb > 0)
 	{
 		argm->stackb[lenb] = argm->stackb[lenb - 1];

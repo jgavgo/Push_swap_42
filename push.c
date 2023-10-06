@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 20:06:54 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/10/04 19:56:39 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/10/06 23:59:44 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,18 @@ void	ft_pa(t_stacks *argm)
 	int	lenb;
 
 	lena = argm->lena;
-	lenb = argm->lenb;
-	while (lena-- > 0)
+	lenb = 0;
+	while (lena > 0)
+	{
 		argm->stacka[lena] = argm->stacka[lena - 1];
+		lena--;
+	}
 	argm->stacka[0] = argm->stackb[0];
-	while (lenb-- > 0)
-		argm->stackb[lenb - 1] = argm->stackb[lenb];
+	while (lenb < argm->lenb)
+	{
+		argm->stackb[lenb] = argm->stackb[lenb + 1];
+		lenb++;
+	}
 	write (1, "pa\n", 3);
 	argm->lena++;
 	argm->lenb--;
@@ -65,15 +71,20 @@ void	ft_pb(t_stacks *argm)
 	int	lena;
 	int	lenb;
 
-	lena = argm->lena;
+	lena = 0;
 	lenb = argm->lenb;
-	while (lenb-- > 0)
+	while (lenb > 0)
+	{
 		argm->stackb[lenb] = argm->stackb[lenb - 1];
+		lenb--;
+	}
 	argm->stackb[0] = argm->stacka[0];
-	while (lena-- > 0)
-		argm->stacka[lena - 1] = argm->stacka[lena];
+	while (lena < argm->lena)
+	{
+		argm->stacka[lena] = argm->stacka[lena + 1];
+		lena++;
+	}
 	write (1, "pb\n", 3);
 	argm->lena--;
 	argm->lenb++;
-	return ;
 }

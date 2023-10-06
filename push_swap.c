@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 21:06:15 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/10/04 22:53:38 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/10/07 00:03:22 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	sel_solution(t_stacks *argm)
 		order4(argm);
 	if (argm->len == 5)
 		order5(argm);
+	if (argm->len > 5)
+		ordermax(argm);
 	return ;
 }
 
