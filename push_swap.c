@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 21:06:15 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/10/07 00:03:22 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/11/07 22:44:07 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	fill_stacks(t_stacks *argm, int argc, char **argv)
 	int	i;
 
 	i = 1;
-	argm->len = argc - 1;
 	while (i < argc)
 	{
 		argm->stackaux[i - 1] = ft_atoi(argv[i]);
@@ -58,23 +57,32 @@ void	fill_stacks(t_stacks *argm, int argc, char **argv)
 
 void	sel_solution(t_stacks *argm)
 {
-	if (argm->len == 2)
+	check_finish(argm);
+	if (argm->len == 2 && argm->memsolv == 0)
 		order2(argm);
-	if (argm->len == 3)
+	else if (argm->len == 3 && argm->memsolv == 0)
 		order3(argm);
-	if (argm->len == 4)
+	else if (argm->len == 4 && argm->memsolv == 0)
 		order4(argm);
-	if (argm->len == 5)
+	else if (argm->len == 5 && argm->memsolv == 0)
 		order5(argm);
-	if (argm->len > 5)
-		ordermax(argm);
+	else if (argm->len > 5 && argm->len <= 39 && argm->memsolv == 0)
+		order_chunks(argm, 1);
+	else if (argm->len < 100 && argm->len > 39 && argm->memsolv == 0)
+		order_chunks(argm, 4);
+	else if (argm->len >= 100 && argm->len <= 300 && argm->memsolv == 0)
+		order_chunks(argm, 6);
+	else if (argm->len > 300 && argm->memsolv == 0)
+		order_chunks(argm, 10);
+	if (!check_finish(argm))
+		sel_solution(argm);
 	return ;
 }
 
 int	ini_stacks(int argc, t_stacks *argm)
 {
 	argm->len = argc - 1;
-	argm->lena = argc -1;
+	argm->lena = argm->len;
 	argm->lenb = 0;
 	argm->stacka = (int *)malloc(sizeof(int) * (argc - 1));
 	if (!argm->stacka)

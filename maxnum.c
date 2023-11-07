@@ -6,52 +6,101 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 00:03:47 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/10/07 00:53:27 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/11/08 00:23:59 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ordermax(t_stacks *argm)
+void	order_chunks(t_stacks *argm, int num_chunks)
 {
-	int	num_chunck;
-	int	i;
-	int	j;
-	int count;
+	int	multi;
+	int	k;
 
-	num_chunck = 1;
-	i = 0;
-	if (argm->len < 100 && argm->len > 39)
-		num_chunck = 4;
-	else if (argm->len >= 100 && argm->len <= 300)
-		num_chunck = 6;
-	else if (argm->len > 300)
-		num_chunck = 10;
-	j = 1;
-	while (argm->stacka[i] < argm->lena)
+	multi = 1;
+	while (multi <= num_chunks && argm->lena != 0)
 	{
-		if (j == 1)
-			count = ((argm->len / num_chunck) * j + (argm->len % num_chunck));
-		else if(j != 1)
-			count = (argm->len / num_chunck) * j;
-		order_chunks(argm, count, j);
-		j++;
-	}
-	check_finish(argm);
-}
-
-void	order_chunks(t_stacks argm, int count, int j)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	if (j == 1)
-	{
-		while (i <= count)
+		if (!search_minmax(argm, (argm->len / num_chunks), multi))
+			return ;
+		else
 		{
-			if (count)
-				i++;
+			k = search_minmax(argm, (argm->len / num_chunks), multi);
+			while (argm->stacka[0] != k)
+			{
+				if (k <= argm->lena / 2)
+					ft_ra(argm);
+				else if (k > argm->lena / 2)
+					ft_rra(argm);
+			}
+			ft_pb(argm);
 		}
 	}
+	push_b(argm);
+}
+
+int	search_minmax(t_stacks *argm, int range, int min_max)
+{
+	int	i;
+	int	k;
+
+	i = 0;
+	k = 0;
+	argm->min = range * (min_max - 1);
+	argm->max = range * min_max;
+	while (i < argm->lena && argm->stacka[k] <= argm->max)
+	{
+		if (argm->stacka[k] < argm->stacka[i])
+			k = i;
+		else
+			i++;
+	}
+	return (k);
+}
+
+int	search_max(int rev_count, t_stacks *argm)
+{
+	int	i;
+
+	i = 0;
+	while (argm->stackb[i] != rev_count)
+		i++;
+	return (i);
+}
+
+void	push_b(t_stacks *argm)
+{
+	int	rev_count;
+	int	i;
+
+	rev_count = argm->len;
+	while (argm->lenb >= 0)
+	{
+		i = search_max(rev_count, argm);
+		while (argm->stackb[0] != rev_count)
+		{
+			if (i < argm->lenb / 2)
+				ft_rrb(argm);
+			else if (i >= argm->lenb / 2)
+				ft_rb(argm);
+		}
+		ft_pa(argm);
+		rev_count--;
+	}
+}
+
+
+int	check_finish(t_stacks *argm)
+{
+	int	i;
+
+	i = 0;
+	while (i < argm->len && argm->len == argm->lena)
+	{
+		if (argm->stacka[i] == i)
+			i++;
+		else
+			return (0);
+	}
+	argm->memsolv = 1;
+	return (argm->memsolv);
 }

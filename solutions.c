@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 20:27:08 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/10/06 23:44:51 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/11/08 00:13:11 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,19 @@ void	order4(t_stacks *argm)
 	int	i;
 	int	j;
 
-	j = 0;
 	i = 0;
-	while (i < argm->lena)
-	{
-		if (argm->stacka[j] < argm->stacka[i])
-			j = i;
-		else
-			i++;
-	}
+	if (argm->lena == argm->len)
+		j = 0;
+	if (argm->lena < argm->len)
+		j = 1;
+	while (argm->stacka[i] != j)
+		i++;
 	if (i <= 1 && argm->stacka[0] != j)
-		ft_ra(argm);
-	else if (i > 1 && argm->stacka[0] != j)
-	{
 		while (argm->stacka[0] != j)
-		{
+			ft_ra(argm);
+	else if (i > 1 && argm->stacka[0] != j)
+		while (argm->stacka[0] != j)
 			ft_rra(argm);
-		}
-	}
 	ft_pb(argm);
 	order3(argm);
 	ft_pa(argm);
@@ -78,16 +73,12 @@ void	order5(t_stacks *argm)
 	if (i <= 2 && argm->stacka[0] != 0)
 	{
 		while (argm->stacka[0] != 0)
-		{
 			ft_ra(argm);
-		}
 	}
 	else if (i > 2 && argm->stacka[0] != 0)
 	{
 		while (argm->stacka[0] != 0)
-		{
 			ft_rra(argm);
-		}
 	}
 	ft_pb(argm);
 	order4(argm);
