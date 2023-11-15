@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 20:06:54 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/11/07 22:17:48 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/11/14 22:59:19 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_pa(t_stacks *argm)
 		lena--;
 	}
 	argm->stacka[0] = argm->stackb[0];
-	while (lenb < argm->lenb)
+	while (lenb < argm->lenb - 1)
 	{
 		argm->stackb[lenb] = argm->stackb[lenb + 1];
 		lenb++;
@@ -79,7 +79,7 @@ void	ft_pb(t_stacks *argm)
 		lenb--;
 	}
 	argm->stackb[0] = argm->stacka[0];
-	while (lena < argm->lena)
+	while (lena < argm->lena - 1)
 	{
 		argm->stacka[lena] = argm->stacka[lena + 1];
 		lena++;

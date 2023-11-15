@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 21:06:15 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/11/07 22:44:07 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/11/14 23:21:23 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,14 @@ void	fill_stacks(t_stacks *argm, int argc, char **argv)
 	index_stacka(argm);
 	argm->lena = argm->len;
 	argm->lenb = 0;
-	sel_solution(argm);
+	argm->memsolv = 0;
+	if (!check_finish(argm))
+		sel_solution(argm);
 	return ;
 }
 
 void	sel_solution(t_stacks *argm)
 {
-	check_finish(argm);
 	if (argm->len == 2 && argm->memsolv == 0)
 		order2(argm);
 	else if (argm->len == 3 && argm->memsolv == 0)
@@ -116,6 +117,8 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (argc == 1)
 		return (0);
+	// if (argc == 2)
+	// 	ft_error();
 	if (!valid_args(argv, argc))
 		ft_error();
 	if (!repeat_num(argv, argc))

@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 21:06:18 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/11/07 23:25:06 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:13:29 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <limits.h>
 
 typedef struct s_stacks
 {
@@ -56,8 +57,10 @@ void	order5(t_stacks *argm);
 int		repeat_num(char **argv, int argc);
 void	order_chunks(t_stacks *argm, int num_chunks);
 int		check_finish(t_stacks *argm);
-int		search_minmax(t_stacks *argm, int range, int min_max);
+int		search_min(t_stacks *argm);
 void	push_b(t_stacks *argm);
-int		search_max(int rev_count, t_stacks *argm);
+int		search_max(t_stacks *argm);
+void	stackb_org(t_stacks *argm);
+int		check_midle(t_stacks *argm, int value, char stack);
 
 #endif

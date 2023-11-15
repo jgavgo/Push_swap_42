@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 00:03:47 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/11/08 00:23:59 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:13:10 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,74 +20,74 @@ void	order_chunks(t_stacks *argm, int num_chunks)
 	multi = 1;
 	while (multi <= num_chunks && argm->lena != 0)
 	{
-		if (!search_minmax(argm, (argm->len / num_chunks), multi))
-			return ;
-		else
+		k = search_min(argm);
+		while (argm->stacka[0] != k)
 		{
-			k = search_minmax(argm, (argm->len / num_chunks), multi);
-			while (argm->stacka[0] != k)
-			{
-				if (k <= argm->lena / 2)
-					ft_ra(argm);
-				else if (k > argm->lena / 2)
-					ft_rra(argm);
-			}
-			ft_pb(argm);
+			// write(1, "valor posicion 0  --> \n", 24);
+			if (check_midle(argm, k, 'a') <= argm->lena / 2)
+				ft_ra(argm);
+			else
+				ft_rra(argm);
 		}
+		ft_pb(argm);
 	}
 	push_b(argm);
 }
 
-int	search_minmax(t_stacks *argm, int range, int min_max)
+int	search_min(t_stacks *argm)
 {
 	int	i;
 	int	k;
 
 	i = 0;
 	k = 0;
-	argm->min = range * (min_max - 1);
-	argm->max = range * min_max;
-	while (i < argm->lena && argm->stacka[k] <= argm->max)
+	// printf("lena --> %d\n\n", argm->lena);
+	while (i < argm->lena)
 	{
-		if (argm->stacka[k] < argm->stacka[i])
+		// printf("value --> %d\n", argm->stacka[k]);
+		if (argm->stacka[k] > argm->stacka[i])
 			k = i;
-		else
-			i++;
+		i++;
 	}
-	return (k);
+	return (argm->stacka[k]);
 }
 
-int	search_max(int rev_count, t_stacks *argm)
+int	search_max(t_stacks *argm)
 {
 	int	i;
+	int	k;
 
 	i = 0;
-	while (argm->stackb[i] != rev_count)
+	k = 0;
+	// printf("lena --> %d\n\n", argm->lena);
+	while (i < argm->lenb)
+	{
+		// printf("value --> %d\n", argm->stacka[k]);
+		if (argm->stackb[k] < argm->stackb[i])
+			k = i;
 		i++;
-	return (i);
+	}
+	return (argm->stackb[k]);
 }
 
 void	push_b(t_stacks *argm)
 {
-	int	rev_count;
 	int	i;
 
-	rev_count = argm->len;
-	while (argm->lenb >= 0)
+	while (argm->lenb > 0)
 	{
-		i = search_max(rev_count, argm);
-		while (argm->stackb[0] != rev_count)
+		i = search_max(argm);
+		if (argm->stackb[0] != i)
 		{
-			if (i < argm->lenb / 2)
+			// write(1, "el sack a esta vacio\n", 22);
+			if (check_midle(argm, i, 'b') <= argm->lenb / 2)
 				ft_rrb(argm);
-			else if (i >= argm->lenb / 2)
+			else
 				ft_rb(argm);
 		}
 		ft_pa(argm);
-		rev_count--;
 	}
 }
-
 
 int	check_finish(t_stacks *argm)
 {

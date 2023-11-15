@@ -6,7 +6,7 @@
 /*   By: jgavilan <jgavilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 20:37:13 by jgavilan          #+#    #+#             */
-/*   Updated: 2023/10/04 21:27:43 by jgavilan         ###   ########.fr       */
+/*   Updated: 2023/11/14 23:37:39 by jgavilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	ft_error(void)
 
 int	ft_atoi(const char *str)
 {
-	int	num;
-	int	sign;
-	int	i;
+	long	num;
+	int		sign;
+	int		i;
 
 	i = 0;
 	num = 0;
@@ -50,7 +50,21 @@ int	ft_atoi(const char *str)
 		num = num * 10 +(str[i] - 48);
 		i++;
 	}
+	if (str[i] && (str[i] < '0' || str[i] > '9'))
+		ft_error();
+	if (num > INT_MAX)
+		ft_error();
 	return (num * sign);
+}
+
+static int	ft_strlen(char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
 int	valid_args(char **argv, int argc)
@@ -60,10 +74,10 @@ int	valid_args(char **argv, int argc)
 	i = 1;
 	while (i < argc)
 	{
-		if (!ft_atoi(argv[i]))
-			return (0);
-		else
-			i++;
+		if (ft_strlen(argv[i]) > 11)
+			ft_error();
+		ft_atoi(argv[i]);
+		i++;
 	}
 	return (1);
 }
